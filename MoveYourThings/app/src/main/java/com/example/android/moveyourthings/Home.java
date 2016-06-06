@@ -7,15 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class TwoFragment extends Fragment{
+public class Home extends Fragment{
 
-    public TwoFragment() {
-        // Required empty public constructor
+    public Home() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
