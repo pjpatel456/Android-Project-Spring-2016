@@ -33,13 +33,26 @@ public class UserPage extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "ONE");
+        adapter.addFragment(new Home(), "ONE");
         adapter.addFragment(new TwoFragment(), "TWO");
+        adapter.addFragment(new ThirdFragement(), "3");
+        adapter.addFragment(new FourFragment(), "4");
+        adapter.addFragment(new FifthFragment(), "5");
         viewPager.setAdapter(adapter);
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(R.drawable.home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.vid);
+        tabLayout.getTabAt(2).setIcon(R.drawable.camera);
+        tabLayout.getTabAt(3).setIcon(R.drawable.truck);
+        tabLayout.getTabAt(4).setIcon(R.drawable.help);
+
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -67,7 +80,7 @@ public class UserPage extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
+            return null;
         }
     }
 
