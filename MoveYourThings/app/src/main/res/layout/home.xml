@@ -4,12 +4,49 @@
                 android:layout_height="match_parent"
                 tools:context=".Home">
 
-    <TextView
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sas"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:id="@+id/imageView2"
+        android:background="@drawable/user"
+        android:layout_marginTop="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/user_text"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="User ID"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="123abc"
+        android:textAlignment="gravity"
+        android:textSize="30sp"
+        android:layout_below="@+id/user_text"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/recoding"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/user_id"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="Record Video"
+        android:background="@color/white"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/header"/>
 
 </RelativeLayout>
