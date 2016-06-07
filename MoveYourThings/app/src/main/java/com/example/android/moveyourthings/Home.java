@@ -3,7 +3,6 @@ package com.example.android.moveyourthings;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,10 +44,9 @@ public class Home extends Fragment{
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                if (takeVideoIntent.resolveActivity(v.getContext().getPackageManager()) != null) {
-                    startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
-                }
+                Intent intent = new Intent(mContext, CameraActivity.class);
+                startActivityForResult(intent,
+                        REQUEST_VIDEO_CAPTURE);
             }
         });
 
