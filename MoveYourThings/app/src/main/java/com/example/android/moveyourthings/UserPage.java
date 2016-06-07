@@ -41,7 +41,7 @@ public class UserPage extends AppCompatActivity {
         adapter.addFragment(new Home(), "ONE");
         adapter.addFragment(new TwoFragment(), "TWO");
         adapter.addFragment(new ThirdFragement(), "3");
-        adapter.addFragment(new FourFragment(), "4");
+        adapter.addFragment(new ShareDetails(), "4");
         adapter.addFragment(new FifthFragment(), "5");
         viewPager.setAdapter(adapter);
     }

@@ -1,9 +1,10 @@
 package com.example.android.moveyourthings;
 
+
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,46 +15,46 @@ import android.widget.TextView;
 import com.example.android.moveyourthings.Utility.Constant;
 
 
-public class Home extends Fragment{
+public class ShareDetails extends Fragment{
 
     Context mContext;
-    static final int REQUEST_VIDEO_CAPTURE = 1;
     public TextView user_id_text;
 
-    public Home() {
+    public ShareDetails() {
+        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.home, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.share, container, false);
         mContext = view.getContext();
         user_id_text = (TextView) view.findViewById(R.id.user_id);
         user_id_text.setText(Constant.user_id);
 
-        Button record = (Button) view.findViewById(R.id.recoding);
+        Button share = (Button) view.findViewById(R.id.share);
 
-
-        record.setOnClickListener(new View.OnClickListener() {
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                if (takeVideoIntent.resolveActivity(v.getContext().getPackageManager()) != null) {
-                    startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
-                }
+                String to[] = {""};
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.setData(Uri.parse("Mailto:"));
+                email.setType("text/plain");
+                email.putExtra(Intent.EXTRA_EMAIL, to);
+                email.putExtra(Intent.EXTRA_SUBJECT, "MYT ID : " + Constant.user_id);
+                email.putExtra(Intent.EXTRA_TEXT, "MYT ID : "+ Constant.user_id);
+                startActivity(email);
             }
         });
 
-
         return view;
-        }
+    }
 
 }
