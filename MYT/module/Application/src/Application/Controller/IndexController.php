@@ -13,11 +13,14 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Model\User;
 use Application\Model\UserTable;
+use Application\Model\UserDetails;
+use Application\Model\UserDetailsTable;
 
 
 class IndexController extends AbstractActionController{
 
 	protected $userTable;
+	protected $userDetailsTable;
 	
 	public function getUserTable(){
 		if (!$this->userTable) {
@@ -27,6 +30,13 @@ class IndexController extends AbstractActionController{
 		return $this->userTable;
 	}
 	
+        public function getUserDetailsTable(){
+                if (!$this->userDetailsTable) {
+                        $sm = $this->getServiceLocator();
+                        $this->userDetailsTable = $sm->get('Application\Model\UserDetailsTable');
+                }
+                return $this->userDetailsTable;
+        }
 	
     public function indexAction(){
         return new ViewModel();
@@ -59,6 +69,14 @@ class IndexController extends AbstractActionController{
     		}
     	}
     	return $this->getResponse()->setContent(json_encode($response));
+    }
+
+    public function getProfileAction() {
+
+        $user_id = $_POST['user_id'];
+
+        $isUserIdExists = $this->getUserDetailsTable()->isUserIdExists($user_id);
+
     }
     
     public function createUserId() {
