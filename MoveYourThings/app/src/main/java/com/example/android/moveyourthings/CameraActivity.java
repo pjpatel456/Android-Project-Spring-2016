@@ -6,21 +6,26 @@ import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.example.android.moveyourthings.Tasks.SavingMedia;
+import com.example.android.moveyourthings.Utility.Constant;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 public class CameraActivity extends Activity {
 
-    private Camera mCamera;
+    private Camera mCamera = null;
     private CameraPreview mPreview;
     private MediaRecorder mMediaRecorder;
     private boolean isRecording = false;
+    String path = Environment.getExternalStorageDirectory().getAbsolutePath()
+            + "/";
+    public String video_Uri = path + "VID_";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class CameraActivity extends Activity {
         preview.addView(mPreview);
 
 
-        // Add a listener to the Capture button
         final Button captureButton = (Button) findViewById(R.id.button_capture);
         captureButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -44,34 +48,30 @@ public class CameraActivity extends Activity {
                     public void onClick(View v) {
                         if (isRecording) {
                             Log.i("inRecording", "SAS");
+
                             // stop recording and release camera
                             mMediaRecorder.stop();  // stop the recording
                             releaseMediaRecorder(); // release the MediaRecorder object
                             mCamera.lock();         // take camera access back from MediaRecorder
                             releaseCamera();
                             Intent returnIntent = new Intent();
-                            returnIntent.putExtra("result", SavingMedia.getOutputMediaFile(2).toString());
+                            returnIntent.putExtra("result", video_Uri + Constant.timestamp + ".mp4");
                             setResult(RESULT_OK, returnIntent);
                             finish();
-                            // inform the user that recording has stopped
-                            captureButton.setText("Capture");
-                            isRecording = false;
                         } else {
                             Log.i("startRecording", "SAS");
                             // initialize video camera
+                            releaseCamera();
+                            java.util.Date date = new java.util.Date();
+                            Constant.timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+                                    .format(date.getTime());
                             if (prepareVideoRecorder()) {
-                                // Camera is available and unlocked, MediaRecorder is prepared,
-                                // now you can start recording
                                 mMediaRecorder.start();
-
-                                // inform the user that recording has started
                                 captureButton.setText("Stop");
                                 isRecording = true;
                             } else {
                                 Log.i("doesnt work", "SAS");
-                                // prepare didn't work, release the camera
                                 releaseMediaRecorder();
-                                // inform user
                             }
                         }
                     }
@@ -100,6 +100,7 @@ public class CameraActivity extends Activity {
 
     private boolean prepareVideoRecorder(){
 
+        mCamera = getCameraInstance();
         mMediaRecorder = new MediaRecorder();
 
         // Step 1: Unlock and set camera to MediaRecorder
@@ -114,7 +115,7 @@ public class CameraActivity extends Activity {
         mMediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
 
         // Step 4: Set output file
-        mMediaRecorder.setOutputFile(SavingMedia.getOutputMediaFile(2).toString());
+        mMediaRecorder.setOutputFile(video_Uri + Constant.timestamp + ".mp4");
 
         // Step 5: Set the preview output
         mMediaRecorder.setPreviewDisplay(mPreview.getHolder().getSurface());
