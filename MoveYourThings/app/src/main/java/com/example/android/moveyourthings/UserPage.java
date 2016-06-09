@@ -39,8 +39,8 @@ public class UserPage extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Home(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThirdFragement(), "3");
+        adapter.addFragment(new VideoList(), "TWO");
+        adapter.addFragment(new VideoCallFragment(), "3");
         adapter.addFragment(new ShareDetails(), "4");
         adapter.addFragment(new FifthFragment(), "5");
         viewPager.setAdapter(adapter);

@@ -27,8 +27,8 @@ public class GetProfile extends AsyncTask<String, Integer, Object>{
     }
 
     @Override
-    protected Object doInBackground(ArrayList<String>... params) {
-        return getProfile(params);
+    protected Object doInBackground(String... params) {
+        return getProfile(params[0], params[1], params[2], params[3], params[4]);
     }
 
     private ArrayList<String> getProfile(final String random_id, final String name, final String email,final String address, final String number) {
