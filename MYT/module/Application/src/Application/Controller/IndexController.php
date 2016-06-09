@@ -89,4 +89,9 @@ class IndexController extends AbstractActionController{
     	$random_char = implode(array_slice($chars, 0, 3));
     	return $random_digits.$random_char;
     }
+
+	public function videocallAction(){
+
+		return new ViewModel();
+	}
 }

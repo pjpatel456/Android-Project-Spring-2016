@@ -1,0 +1,62 @@
+<?php
+$this->headScript()->appendFile($this->basePath() . '/js/skylink.min.js');
+?>
+<?php
+$this->inlineScript()->captureStart();
+?>
+        var skylink = new Skylink();
+        function leaveRoom () {
+                skylink.leaveRoom();
+                location.reload();
+        }
+
+        $("#btnSubmit").on("click",function(e){
+                e.preventDefault();
+                $("#endSkylink").show();
+                $("#myvideo").show();
+                var myt = $("#myt_key").val();
+                skylink.on('peerJoined', function(peerId, peerInfo, isSelf) {
+                        if(isSelf) return; // We already have a video element for our video and don't need to create a new one.
+                        var vid = document.createElement('video');
+            vid.autoplay = true;
+            vid.muted = false; // Added to avoid feedback when testing locally
+            vid.id = peerId;
+            vid.width=328;
+            vid.height=250;
+            document.getElementById('videos').appendChild(vid);
+        });
+                skylink.on('incomingStream', function(peerId, stream, isSelf) {
+                        if(isSelf) return;
+            var vid = document.getElementById(peerId);
+            attachMediaStream(vid, stream);
+        });
+        skylink.on('mediaAccessSuccess', function(stream) {
+            var vid = document.getElementById('myvideo');
+            attachMediaStream(vid, stream);
+        });
+        skylink.init({
+            apiKey: '996a7fc6-d6fc-41ea-aa6d-27d511fc8eca',
+            defaultRoom: myt
+            }, function() {
+                                        skylink.joinRoom({
+                    audio: true,
+                    video: true
+               });
+        });
+
+    })
+
+
+<?php $this->inlineScript()->captureEnd(); ?>
+<div class="container" style="padding-top:20px; text-align: center;">
+    <div >
+                 <input type="text" placeholder="Enter User ID" class="id-search-input" id="myt_key" value="" name="myt_key">
+                 <span style="padding-left:20px;"></span>
+                 <input type="submit" id="btnSubmit" name="btnSubmit" value="Start Call" class="id-search-btn"/>
+    </div>
+    <div style="padding-top:20px" >
+        <div id="videos"><video id="myvideo"  style="transform: rotateY(-180deg);  display: none;" autoplay muted></video></div>
+        <button style="display: none" "button" id="endSkylink" class="sign-btn button-padd" onclick="leaveRoom()">End Call</button>
+    </div>
+</div>
+
