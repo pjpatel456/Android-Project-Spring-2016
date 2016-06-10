@@ -49,7 +49,8 @@ public class ShareDetails extends Fragment{
                 email.setType("text/plain");
                 email.putExtra(Intent.EXTRA_EMAIL, to);
                 email.putExtra(Intent.EXTRA_SUBJECT, "MYT ID : " + Constant.user_id);
-                email.putExtra(Intent.EXTRA_TEXT, "MYT ID : "+ Constant.user_id);
+                email.putExtra(Intent.EXTRA_TEXT, "MYT ID : "+ Constant.user_id
+                + "\n Name : " + Constant.name + "\n Number : "+ Constant.number );
                 startActivity(email);
             }
         });
