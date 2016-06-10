@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.hardware.Camera;
 import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -38,12 +39,17 @@ public class Home extends Fragment{
     byte[] inputDatavideo;
     public String video_duration;
     SqlDatabase sql;
+    private Camera mCamera;
 
     public Home() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (mCamera != null){
+            mCamera.release();        // release the camera for other applications
+            mCamera = null;
+        }
         super.onCreate(savedInstanceState);
 
 

@@ -1,6 +1,7 @@
 package com.example.android.moveyourthings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,6 @@ public class UserPage extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.vc:
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -63,7 +62,7 @@ public class UserPage extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Home(), "ONE");
         adapter.addFragment(new VideoList(), "TWO");
-        adapter.addFragment(new ThirdFragement(), "3");
+        adapter.addFragment(new VideoCallFragment(), "3");
         adapter.addFragment(new ShareDetails(), "4");
         adapter.addFragment(new Help(), "5");
         viewPager.setAdapter(adapter);

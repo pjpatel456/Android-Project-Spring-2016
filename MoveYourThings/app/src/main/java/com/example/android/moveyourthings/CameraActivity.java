@@ -47,6 +47,7 @@ public class CameraActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         if (isRecording) {
+
                             Log.i("inRecording", "SAS");
 
                             // stop recording and release camera
@@ -59,6 +60,7 @@ public class CameraActivity extends Activity {
                             setResult(RESULT_OK, returnIntent);
                             finish();
                         } else {
+
                             Log.i("startRecording", "SAS");
                             // initialize video camera
                             releaseCamera();
@@ -77,6 +79,17 @@ public class CameraActivity extends Activity {
                     }
                 }
         );
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+        super.onPause();
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.release();
+            mCamera = null;
+        }
     }
 
     @Override
@@ -101,6 +114,7 @@ public class CameraActivity extends Activity {
     private boolean prepareVideoRecorder(){
 
         mCamera = getCameraInstance();
+        mCamera.setDisplayOrientation(90);
         mMediaRecorder = new MediaRecorder();
 
         // Step 1: Unlock and set camera to MediaRecorder
@@ -116,6 +130,7 @@ public class CameraActivity extends Activity {
 
         // Step 4: Set output file
         mMediaRecorder.setOutputFile(video_Uri + Constant.timestamp + ".mp4");
+        mMediaRecorder.setOrientationHint(90);
 
         // Step 5: Set the preview output
         mMediaRecorder.setPreviewDisplay(mPreview.getHolder().getSurface());

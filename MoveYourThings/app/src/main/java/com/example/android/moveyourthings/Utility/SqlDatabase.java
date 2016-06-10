@@ -2,11 +2,15 @@ package com.example.android.moveyourthings.Utility;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.android.moveyourthings.model.VideoListModel;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class SqlDatabase extends SQLiteOpenHelper {
@@ -92,6 +96,43 @@ public class SqlDatabase extends SQLiteOpenHelper {
         } catch (Exception e) {
             return false;
         }
+    }
+
+
+    public ArrayList<VideoListModel> getVideoList() {
+        ArrayList<VideoListModel> arrayList = new ArrayList<VideoListModel>();
+        Cursor cursor = null;
+        String selectQuery = "SELECT  * FROM " + video_table + " ORDER BY "+ datetime +" DESC ";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                VideoListModel videoListModel = new VideoListModel();
+                videoListModel.setName(cursor.getString(cursor
+                        .getColumnIndex(name)));
+                videoListModel.setVideo_path(cursor.getString(cursor
+                        .getColumnIndex(video_path)));
+                videoListModel.setVideo_duration(cursor.getString(cursor
+                        .getColumnIndex(video_duration)));
+                videoListModel.setDatetime(cursor.getString(cursor
+                        .getColumnIndex(datetime)));
+                videoListModel.setUser_id(cursor.getString(cursor
+                        .getColumnIndex(user_id)));
+                videoListModel.setUplodedStatus(cursor.getString(cursor
+                        .getColumnIndex(uplodedStatus)));
+                videoListModel.setVideo_thumb(cursor.getString(cursor
+                        .getColumnIndex(video_thumb)));
+
+                arrayList.add(videoListModel);
+
+            } while (cursor.moveToNext());
+        } else {
+            VideoListModel ListModel = new VideoListModel();
+        }
+        cursor.close();
+        db.close();
+        return arrayList;
     }
 
 }

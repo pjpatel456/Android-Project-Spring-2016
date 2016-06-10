@@ -3,6 +3,7 @@ package com.example.android.moveyourthings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ public class ShareDetails extends Fragment{
 
     Context mContext;
     public TextView user_id_text;
+    private Camera mCamera;
 
     public ShareDetails() {
         // Required empty public constructor
@@ -26,6 +28,10 @@ public class ShareDetails extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (mCamera != null){
+            mCamera.release();        // release the camera for other applications
+            mCamera = null;
+        }
         super.onCreate(savedInstanceState);
     }
 
