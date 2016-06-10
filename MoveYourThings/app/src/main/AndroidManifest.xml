@@ -37,6 +37,10 @@
             android:name="com.example.android.moveyourthings.CameraActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name="com.example.android.moveyourthings.Profile"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

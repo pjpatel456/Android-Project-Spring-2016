@@ -9,18 +9,20 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="10dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/help"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="HELP"
             android:textColor="@android:color/holo_red_light"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:layout_weight="0.24" />
 
         <TextView
             android:layout_width="match_parent"
@@ -29,8 +31,9 @@
             android:text="* Record a video of each room"
             android:textAlignment="textStart"
             android:textSize="25sp"
+            android:paddingTop="10dp"
             android:layout_below="@+id/help"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/black"
             />
 
         <TextView
@@ -40,7 +43,7 @@
             android:text="* Share Your MYT ID "
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/black"
             />
 
         <TextView
@@ -50,7 +53,7 @@
             android:text="* Name your Videos"
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/black"
            />
 
         <TextView
@@ -60,7 +63,7 @@
             android:text="* Video Call to the Movers"
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/black"
             />
 
         <TextView
@@ -70,7 +73,7 @@
             android:text="* Show contents of closets and cabinets and discuss packing requirements"
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/black"
            />
 
         <TextView
@@ -80,7 +83,7 @@
             android:text="* If truck accessibility is problematic, record a separate video to explain"
             android:textAlignment="textStart"
             android:textSize="25sp"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@android:color/black"
             />
 
 

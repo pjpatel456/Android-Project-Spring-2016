@@ -50,10 +50,9 @@ public class UserPage extends AppCompatActivity {
             case R.id.profile:
                 Intent intent = new Intent(mContext, Profile.class);
                 startActivity(intent);
-                finish();
                 return true;
             case R.id.vc:
-                // Green item was selected
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
