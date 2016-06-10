@@ -42,7 +42,7 @@ public class UserPage extends AppCompatActivity {
         adapter.addFragment(new VideoList(), "TWO");
         adapter.addFragment(new VideoCallFragment(), "3");
         adapter.addFragment(new ShareDetails(), "4");
-        adapter.addFragment(new FifthFragment(), "5");
+        adapter.addFragment(new Help(), "5");
         viewPager.setAdapter(adapter);
     }
 

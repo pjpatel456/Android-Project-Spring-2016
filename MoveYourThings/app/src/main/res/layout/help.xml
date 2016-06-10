@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="HELP"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="* Record a video of each room"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:layout_below="@+id/help"
+            android:textColor="@android:color/holo_blue_light"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="* Share Your MYT ID "
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textColor="@android:color/holo_blue_light"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="* Name your Videos"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textColor="@android:color/holo_blue_light"
+           />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="* Video Call to the Movers"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textColor="@android:color/holo_blue_light"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="* Show contents of closets and cabinets and discuss packing requirements"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textColor="@android:color/holo_blue_light"
+           />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="* If truck accessibility is problematic, record a separate video to explain"
+            android:textAlignment="textStart"
+            android:textSize="25sp"
+            android:textColor="@android:color/holo_blue_light"
+            />
+
+
+
+    </LinearLayout>
+</ScrollView>
